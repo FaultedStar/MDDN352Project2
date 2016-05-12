@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>PocketWeather</title>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap and style-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css" media="screen">
+
+<!-- font-->
+<link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
+   <!---js scrips  -->
+   
+   <script src="../geolocate.js"></script> 
+ <script src="../js/sophie.js"></script>
+   <!--maps api-->
+   <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+ <script src="../js/Menu.min.js"></script><script>
+      function writeAddressName(latLng) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+          "location": latLng
+        },
+        function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK)
+
+            document.getElementById("address").innerHTML = results[0].formatted_address;
+           
+          else
+            document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
+        });
+         document.getElementById("latitudeLong").innerHTML = latLng;
+      }
+
+      function geolocationSuccess(position) {
+        var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        // Write the formatted address
+        writeAddressName(userLatLng);
+
+        var myOptions = {
+          zoom : 18,
+          center : userLatLng,
+          mapTypeId : google.maps.MapTypeId.ROADMAP
+        };
+        // Draw the map
+        var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
+        // Place the marker
+        new google.maps.Marker({
+          map: mapObject,
+          position: userLatLng
+        });
+        // Draw a circle around the user position to have an idea of the current localization accuracy
+        var circle = new google.maps.Circle({
+          center: userLatLng,
+          radius: position.coords.accuracy,
+          map: mapObject,
+          fillColor: '#1a75ff',
+          fillOpacity: 0.4,
+          strokeColor: '#0052cc',
+          strokeOpacity: 0.6
+        });
+        mapObject.fitBounds(circle.getBounds());
+      }
+
+      function geolocationError(positionError) {
+        document.getElementById("error").innerHTML += "Error: " + positionError.message + "<br />";
+      }
+
+      function geolocateUser() {
+        // If the browser supports the Geolocation API
+        if (navigator.geolocation)
+        {
+          var positionOptions = {
+            enableHighAccuracy: true,
+            timeout: 10 * 1000 // 10 seconds
+          };
+          navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, positionOptions);
+        }
+        else
+          document.getElementById("error").innerHTML += "Your browser doesn't support the Geolocation API";
+      }
+
+      window.onload = geolocateUser;
+
+
+
+      
+    //  function WeatherCall(){
+   //   var currentWeather = JSON.stringify(api.openweathermap.org/data/2.5/weather?id=//2172797);
+    //    document.getElementById("WeatherNow").innerHTML = currentWeather; 
+ //     }
+    </script>
+
+
+ <!--Menus from  http://tympanus.net/codrops/2013/04/17/slide-and-push-menus/ -->
+<link rel="stylesheet" type="text/css" href="../css/default.css" />
+    <link rel="stylesheet" type="text/css" href="../css/component.css" />
+    <script src="../js/modernizr.custom.js"></script>
+</head>
+
+<body>
+
+<div class=" container-fluid mainBody">
+<div class="mainContainer"> 
+   <h1>Pocket Weather</h1>
+
+    <p><b>Address</b>: <span id="address"></span></p>
+    <p><b>latlong</b>: <span id="latitudeLong"></span></p>
+    <p><b>Weather</b>: <span id="WeatherNow"></span></p>
+   <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+      <h3>Menu</h3>
+       <a href="../index.html">Current Weather</a>
+      <a href="longterm.html">Long Term Forcast</a>
+      <a href="wardrobe.html">Wardrobe</a>
+      <a href="stats.html">Statistics</a>
+      <a href="unlocks.html">Unlocks</a>    
+    </nav>
+<p>Current Temperature: <div id="weatherDisp"></div></p>
+<p>here is more of the gamification where you could unlock some upgrades such as new backgrounds for elemental.</p>
+
+    <button id="showLeft">Menu</button>
+    <script src="../js/classie.js"></script>
+    <script>
+      var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+        menuRight = document.getElementById( 'cbp-spmenu-s2' ),
+        menuTop = document.getElementById( 'cbp-spmenu-s3' ),
+        menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+        showLeft = document.getElementById( 'showLeft' ),
+        showRight = document.getElementById( 'showRight' ),
+        showTop = document.getElementById( 'showTop' ),
+        showBottom = document.getElementById( 'showBottom' ),
+        showLeftPush = document.getElementById( 'showLeftPush' ),
+        showRightPush = document.getElementById( 'showRightPush' ),
+        body = document.body;
+
+      showLeft.onclick = function() {
+        classie.toggle( this, 'active' );
+        classie.toggle( menuLeft, 'cbp-spmenu-open' );
+        disableOther( 'showLeft' );
+      };
+      function disableOther( button ) {
+        if( button !== 'showLeft' ) {
+          classie.toggle( showLeft, 'disabled' );
+        }
+        
+      }
+    </script>
+  
+</div>
+</div>
+
+
+</body>
+
+</body>
+</html>

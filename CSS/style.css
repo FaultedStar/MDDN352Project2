@@ -1,0 +1,152 @@
+
+/*http://tympanus.net/codrops/2013/04/17/slide-and-push-menus/*/
+
+body {	
+
+font-family: 'Fira Sans', sans-serif;
+  background-color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+background-color: #1a75ff; /*blue background*/
+
+}
+
+
+h1{
+
+ font-family: 'Fredoka One', cursive;
+}
+
+h2{
+font-family: 'Fredoka One', cursive;
+
+}
+
+p{
+  font-size: 12px; 
+text-align: left;
+font-size: 2vmin;
+  
+}
+
+
+#map {
+        width: 50%;
+        height: 50%;
+        padding: 15%;
+
+      }
+
+
+
+
+.mainBody{
+margin: 20px;
+border-radius: 25px;
+
+}
+
+.styleText{
+  float: left;
+  height:100%;
+  width:50%;
+}
+.styleTextStyle{  
+  font-size: 12px; 
+text-align: left;
+font-size: 1.5vmin;
+}
+
+.SnowFlakeWrapper{
+  width:50%;
+  height:100%;
+  float:right; 
+}
+#snowflake{
+ width: 30vw;
+max-height: 200px;
+max-width: 250px;
+
+}
+
+/*main page things*/
+.mainContainer{
+min-height: 600px;
+border-radius: 25px;
+	border:  2px solid #0052cc;
+	background-color: white;
+	padding: 30px;
+	/*text-align: center;*/
+}
+
+.bodyCon{
+  padding-top: 2vw;
+  padding-right: 10vw;
+  padding-left: 10vw;
+height: 300px;
+
+
+}
+.wireCon{
+  max-height: 1300px;
+height:120vw;
+
+}
+
+#DesktopWireframe{
+width: 60vw;
+max-height: 600px;
+max-width: 600px;
+}
+
+#TabletWireframe{
+width: 20vw;
+max-height: 450px;
+max-width: 245px;
+}
+
+#MobileWireframe{
+width: 15vw;
+max-height: 327px;
+max-width: 225px;
+}
+
+.DeviceWrapper{
+  width:50%;
+  height:100%;
+  float:right; 
+}
+#device{
+ width: 20vw;
+max-height: 200px;
+max-width: 250px;
+
+}
+.goalsText{
+
+  font-size: 12px; 
+text-align: left;
+font-size: 1.5vmin;
+padding-bottom: 5px;
+}
+
+.mapBox{
+padding-right: 10vw;
+  padding-left: 10vw;
+max-height:900px;
+
+
+}
+
+
+
+
+/*used for wirefraiming */
+.border{
+  border:1px solid; 
+  border-color:#0052cc ;
+  border-radius: 25px;
+  margin: 5px;
+}
+
